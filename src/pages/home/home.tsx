@@ -1,7 +1,10 @@
+import { useState } from "react";
+import MainInput from "../../components/MainCard/MainInput/MainInput";
 import MainCard from "../../components/MainCard/MinaCard"
 import LabelValue from "./components/labelValue/labelValue"
+import SeacrhIcon from "../../assets/icons/search";
 
-const countries = [
+let countries = [
     { name: "Germany", population: "38 million", capital: "Berlin", language: "German", imageUrl: "https://picsum.photos/seed/germany/400/300" },
     { name: "France", population: "67 million", capital: "Paris", language: "French", imageUrl: "https://picsum.photos/seed/france/400/300" },
     { name: "Spain", population: "47 million", capital: "Madrid", language: "Spanish", imageUrl: "https://picsum.photos/seed/spain/400/300" },
@@ -13,19 +16,29 @@ const countries = [
 ];
 
 const HomePge = () => {
+    const [searchValue, setSearchValue] = useState('')
+
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
-            {countries.map((c) => (
-                <MainCard key={c.name} imageUrl={c.imageUrl}>
-                    <div className='flex flex-col items-start p-4'>
-                        <p className="text-gray-700 text-xl font-bold mb-2">{c.name}</p>
-                        <LabelValue label="Population" value={c.population} />
-                        <LabelValue label="Capital" value={c.capital} />
-                        <LabelValue label="Language" value={c.language} />
-                    </div>
-                </MainCard>
-            ))}
-        </div>
+        <>
+            <div className="w-[40%] mb-8">
+                <MainInput icon={<SeacrhIcon />} placeholder="Search for a country…" value={searchValue} onChange={(e) => {
+                    setSearchValue(e.target.value);
+
+                }} />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
+                {countries.map((c) => (
+                    <MainCard key={c.name} imageUrl={c.imageUrl}>
+                        <div className='flex flex-col items-start p-4'>
+                            <p className="text-gray-700 text-xl font-bold mb-2">{c.name}</p>
+                            <LabelValue label="Population" value={c.population} />
+                            <LabelValue label="Capital" value={c.capital} />
+                            <LabelValue label="Language" value={c.language} />
+                        </div>
+                    </MainCard>
+                ))}
+            </div>
+        </>
     )
 }
 
