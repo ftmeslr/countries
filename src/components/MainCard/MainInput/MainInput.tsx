@@ -1,7 +1,7 @@
 import type { ComponentProps, JSX } from "react"
 
 const MainInput = (InputProps: ComponentProps<'input'> & { icon: JSX.Element }) => {
-    const { onChange, value, placeholder, icon } = InputProps;
+    const { onChange, value, placeholder, icon, ...props } = InputProps;
 
     return (
         <>
@@ -10,10 +10,13 @@ const MainInput = (InputProps: ComponentProps<'input'> & { icon: JSX.Element }) 
                     {icon}
                 </span>
                 <input
-                    className="flex  bg-red px-10 shadow py-4 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-black w-full"
+                    className="flex bg-red px-10 shadow py-4 rounded-md focus:border-blue-500 focus:ring-2 focus:ring-blue-200 text-black w-full"
                     placeholder={placeholder}
                     name="input"
-                    value={value} onChange={onChange} />
+                    value={value}
+                    onChange={onChange}
+                    {...props}
+                />
 
             </div>
         </>

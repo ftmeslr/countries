@@ -2,7 +2,8 @@ import { useState } from "react";
 import MainInput from "../../components/MainCard/MainInput/MainInput";
 import MainCard from "../../components/MainCard/MinaCard"
 import LabelValue from "./components/labelValue/labelValue"
-import SeacrhIcon from "../../assets/icons/search";
+import { SearchIcon } from "../../assets/icons";
+import { SelectBox } from "../../components/SelectBox/index";
 
 let countries = [
     { name: "Germany", population: "38 million", capital: "Berlin", language: "German", imageUrl: "https://picsum.photos/seed/germany/400/300" },
@@ -15,17 +16,34 @@ let countries = [
     { name: "Poland", population: "38 million", capital: "Warsaw", language: "Polish", imageUrl: "https://picsum.photos/seed/poland/400/300" },
 ];
 
-const HomePge = () => {
+const HomePage = () => {
     const [searchValue, setSearchValue] = useState('')
+    const [selectedValue, setSelectedValue] = useState('Filter by Regon')
 
     return (
         <>
-            <div className="w-[40%] mb-8">
-                <MainInput icon={<SeacrhIcon />} placeholder="Search for a country…" value={searchValue} onChange={(e) => {
-                    setSearchValue(e.target.value);
+            <div className="flex justify-between items-center">
+                <div className="sm:w-[200px] md:w-[450px] ">
+                    <MainInput icon={<SearchIcon />} placeholder="Search for a country…" value={searchValue} onChange={(e) => {
+                        setSearchValue(e.target.value);
 
-                }} />
+                    }} />
+                </div>
+                <div className="w-full sm:w-[200px] md:w-[250px] gap-1">
+                    <SelectBox options={[{
+                        label: 'iran',
+                        value: 'IRAN'
+                    },
+                    {
+                        label: 'turkry',
+                        value: 'turkry'
+                    }]}
+                        value={selectedValue}
+                        setSelectValue={setSelectedValue}
+                    />
+                </div>
             </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
                 {countries.map((c) => (
                     <MainCard key={c.name} imageUrl={c.imageUrl}>
@@ -42,4 +60,4 @@ const HomePge = () => {
     )
 }
 
-export default HomePge
+export default HomePage
