@@ -1,7 +1,11 @@
 import { ArrowDown } from "./ArrowDown";
-import { SearchIcon } from "./search";
+import { SearchIcon } from "./Search";
+import { Sun } from "./Sun";
+import { Moon } from './Moon'
 
 export {
     ArrowDown,
-    SearchIcon
+    SearchIcon,
+    Sun,
+    Moon
 }
